@@ -14,10 +14,10 @@ public class BulletSpawner1 : MonoBehaviour {
     public float numOfBulletsIncrease = 0.5f;
     public float bulletSpeed = 10f;
 
+    public float spreadAngle = 70f;
     #endregion
 
-    public bool right = true;
-    public bool down = true;
+    public float previewDrawRange = 2f;
 
     private void Start() {
         InvokeRepeating("SpawnBullets", delay, delay);
@@ -32,15 +32,9 @@ public class BulletSpawner1 : MonoBehaviour {
 
             GameObject b = GetFromPool();
             b.transform.position = transform.position;
-
-            Vector3 dir = new Vector2(1, -1);
-            if (!right)
-                dir.x = -1;
-            if (!down)
-                dir.y = 1;
-
-            b.transform.right = dir;
-            b.transform.Rotate(0f, 0f, Random.Range(-70f, 70f));
+            b.transform.right = transform.right;
+            b.transform.Rotate(0f, 0f, Random.Range(-spreadAngle, spreadAngle));
+            b.SetActive(true);
         }
 
         numOfBullets += numOfBulletsIncrease;
@@ -49,11 +43,12 @@ public class BulletSpawner1 : MonoBehaviour {
     GameObject GetFromPool() {
         if (bulletPool.Count > 0) {
             GameObject b = bulletPool.Dequeue();
-            b.SetActive(true);
+            //b.SetActive(true);
             activeBullets.Add(b);
             return b;
         } else {
             GameObject b = Instantiate(bulletPrefab);
+            b.transform.parent = transform;
             activeBullets.Add(b);
             return b;
         }
@@ -76,5 +71,17 @@ public class BulletSpawner1 : MonoBehaviour {
                 PutInPool(b);
             }
         }
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+
+        Vector3 forward = transform.right * previewDrawRange;
+
+        Vector3 leftDir = Quaternion.Euler(0, 0, -spreadAngle) * forward;
+        Vector3 rightDir = Quaternion.Euler(0, 0, spreadAngle) * forward;
+
+        Gizmos.DrawLine(transform.position, transform.position + leftDir);
+        Gizmos.DrawLine(transform.position, transform.position + rightDir);
     }
 }
