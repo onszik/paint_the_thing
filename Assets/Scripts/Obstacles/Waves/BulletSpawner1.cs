@@ -30,7 +30,8 @@ public class BulletSpawner1 : MonoBehaviour {
     void SpawnBullets() {
         for (int i = 0; i < Mathf.Floor(numOfBullets); i++) {
 
-            GameObject b = GetFromPool();
+            GameObject b = PoolingManager.instance.GetObject("bullet");
+            b.transform.SetParent(transform, true);
             b.transform.position = transform.position;
             b.transform.right = transform.right;
             b.transform.Rotate(0f, 0f, Random.Range(-spreadAngle, spreadAngle));
@@ -40,6 +41,7 @@ public class BulletSpawner1 : MonoBehaviour {
         numOfBullets += numOfBulletsIncrease;
     }
 
+    /*
     GameObject GetFromPool() {
         if (bulletPool.Count > 0) {
             GameObject b = bulletPool.Dequeue();
@@ -58,6 +60,7 @@ public class BulletSpawner1 : MonoBehaviour {
         bullet.SetActive(false);
         bulletPool.Enqueue(bullet);
     }
+    */
 
     private void MoveBullets() {
         for (int i = activeBullets.Count - 1; i >= 0; i --) {
@@ -68,7 +71,7 @@ public class BulletSpawner1 : MonoBehaviour {
             if (b.transform.position.magnitude > 10f) // adjust for screen size
             {
                 activeBullets.RemoveAt(i);
-                PutInPool(b);
+                PoolingManager.instance.DiscardObject("bullet", b);
             }
         }
     }

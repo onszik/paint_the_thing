@@ -27,6 +27,7 @@ public class meteorspawner : MonoBehaviour
             amount *= multiplier;
             delay = 0f;
 
+            //GameObject m = PoolingManager.instance.GetObject("meteor");
             GameObject m = Instantiate(meteor);
 
             float height = cam.orthographicSize - 1;
