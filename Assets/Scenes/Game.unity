@@ -705,7 +705,7 @@ MonoBehaviour:
   numOfBullets: 3
   numOfBulletsIncrease: 0.2
   bulletSpeed: 2
-  spreadAngle: 70
+  spreadAngle: 60
   previewDrawRange: 7.9
 --- !u!1 &463720421
 GameObject:
@@ -1413,6 +1413,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skins: {fileID: 11400000, guid: e89376261371108478d384a19f4ba608, type: 2}
   sprite: {fileID: 1901519235}
+--- !u!1 &821146649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 821146651}
+  - component: {fileID: 821146650}
+  m_Layer: 0
+  m_Name: ScriptedEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!320 &821146650
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821146649}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: ccaf481f03cc2d444b40ee23e9da1759, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []
+--- !u!4 &821146651
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821146649}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.6179452, y: -0.23170629, z: -0.011908555}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &910780078
 GameObject:
   m_ObjectHideFlags: 0
@@ -2315,7 +2364,7 @@ MonoBehaviour:
   numOfBullets: 3
   numOfBulletsIncrease: 0.2
   bulletSpeed: 2
-  spreadAngle: 70
+  spreadAngle: 60
   previewDrawRange: 7.9
 --- !u!1 &1466603625
 GameObject:
@@ -2590,7 +2639,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1728374304}
-  - component: {fileID: 1728374306}
+  - component: {fileID: 1728374305}
   m_Layer: 0
   m_Name: Lazer spawner
   m_TagString: Untagged
@@ -2613,7 +2662,7 @@ Transform:
   m_Father: {fileID: 1836996065}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1728374306
+--- !u!114 &1728374305
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2622,14 +2671,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1728374303}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 615c8f0138d18d243b7b1f9f70288deb, type: 3}
+  m_Script: {fileID: 11500000, guid: 68283433dbe700c43b9e1b108b14f647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lazerPrefab: {fileID: 0}
+  lazerPrefab: {fileID: 7646462217284525042, guid: 70b6b425e514822428c09c44e6a2c2f5, type: 3}
   sound: {fileID: 1624029297}
-  delay: 5
+  delay: 3
   numOfLazers: 2.8
   numOfLazersIncrease: 0.4
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1769563174
 GameObject:
   m_ObjectHideFlags: 0

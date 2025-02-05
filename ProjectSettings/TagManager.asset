@@ -8,6 +8,7 @@ TagManager:
   - enemy
   - Default
   - ScreenShake
+  - lazer
   layers:
   - Default
   - TransparentFX
