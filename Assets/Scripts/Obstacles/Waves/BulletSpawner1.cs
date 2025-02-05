@@ -31,6 +31,7 @@ public class BulletSpawner1 : MonoBehaviour {
         for (int i = 0; i < Mathf.Floor(numOfBullets); i++) {
 
             GameObject b = PoolingManager.instance.GetObject("bullet");
+            activeBullets.Add(b);
             b.transform.SetParent(transform, true);
             b.transform.position = transform.position;
             b.transform.right = transform.right;
