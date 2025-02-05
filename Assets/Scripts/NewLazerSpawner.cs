@@ -34,7 +34,9 @@ public class NewLazerSpawner : MonoBehaviour {
 
     void SpawnLazers() {
         for (int i = 0; i < Mathf.Floor(numOfLazers); i++) {
-            GameObject l = GetFromPool();
+            GameObject l = PoolingManager.instance.GetObject("lazer");
+            l.transform.SetParent(transform, true);
+            activeLazers.Add(l.GetComponent<LineRenderer>());
 
             (Vector2 position1, Vector2 position2) = Utility.GetRandomPointsOnOppositeBounds();
             LineRenderer line = l.GetComponent<LineRenderer>();
@@ -156,6 +158,7 @@ public class NewLazerSpawner : MonoBehaviour {
         }
     }
 
+    /*
     GameObject GetFromPool() {
         if (lazerPool.Count > 0) {
             GameObject b = lazerPool.Dequeue();
@@ -169,22 +172,20 @@ public class NewLazerSpawner : MonoBehaviour {
             return b;
         }
     }
+    */ 
 
     public void PutInPool(GameObject lazer = null) {
         if (lazer == null) {
             // Pool all active lasers
             foreach (var l in activeLazers) {
-                l.gameObject.SetActive(false);
-                lazerPool.Enqueue(l.gameObject);
+                PoolingManager.instance.DiscardObject("lazer", l.gameObject);
             }
             activeLazers.Clear(); // Clear the list after pooling all lasers
         } else {
             // Pool a specific laser
             LineRenderer line = lazer.GetComponent<LineRenderer>();
             if (line != null) {
-                line.gameObject.SetActive(false);
-                lazerPool.Enqueue(line.gameObject);
-                activeLazers.Remove(line); // Remove the specific laser from active list
+                PoolingManager.instance.DiscardObject("lazer", line.gameObject);
             }
         }
     }
